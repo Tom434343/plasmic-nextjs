@@ -1,0 +1,75 @@
+{
+  "projects": [
+    {
+      "projectId": "wJCtnTJsMmEC5x5cLNk59j",
+      "version": "latest",
+      "dependencies": {
+        "gmeH6XgPaBtkt51HunAo4g": "18.14.0"
+      },
+      "lang": "js",
+      "fileLocks": [
+        {
+          "type": "globalVariant",
+          "assetId": "GkewWsI44WMP",
+          "checksum": "ab094663d2f2577a5828f3923800249f"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "5g8n4p__hZb5",
+          "checksum": "90022b97cf09731f8fea79ce529b7509"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "5g8n4p__hZb5",
+          "checksum": "90022b97cf09731f8fea79ce529b7509"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "6qn7xRegxK8t",
+          "checksum": "c9c09f9f4dbb83ab68184d3af29e89e3"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "6qn7xRegxK8t",
+          "checksum": "c9c09f9f4dbb83ab68184d3af29e89e3"
+        },
+        {
+          "type": "image",
+          "assetId": "ML0ITqujgYDS",
+          "checksum": "3af768faa8e87a89f706377c85c1ddba"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "5li343VTku5c",
+          "checksum": "481a361dc5ce5bee8a1929dbb2953c06"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "5li343VTku5c",
+          "checksum": "481a361dc5ce5bee8a1929dbb2953c06"
+        },
+        {
+          "assetId": "wJCtnTJsMmEC5x5cLNk59j",
+          "type": "projectCss",
+          "checksum": "fe9914996351912e5930254950123670"
+        }
+      ],
+      "codegenVersion": "0.0.1"
+    },
+    {
+      "projectId": "gmeH6XgPaBtkt51HunAo4g",
+      "version": "18.14.0",
+      "dependencies": {},
+      "lang": "js",
+      "fileLocks": [
+        {
+          "assetId": "gmeH6XgPaBtkt51HunAo4g",
+          "type": "projectCss",
+          "checksum": "1c02168c6b23256606111fdfdbb63549"
+        }
+      ],
+      "codegenVersion": "0.0.1"
+    }
+  ],
+  "cliVersion": "0.1.335"
+}
