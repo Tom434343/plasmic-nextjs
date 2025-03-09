@@ -1,31 +1,46 @@
-"use client"; // ✅ Assure que cette page est exécutée uniquement côté client
+"use client";
 
-import * as React from "react";
-import { useSearchParams, useParams } from "next/navigation";
-import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/host";
-import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
 
-// ✅ Chargement dynamique de PlasmicHomepage pour éviter l'hydratation serveur
-const PlasmicHomepage = dynamic(
-  () => import("../components/plasmic/dashboard_app/PlasmicHomepage"),
-  { ssr: false } // ✅ Désactive le rendu serveur (évite l'erreur d'hydratation)
-);
+export default function Homepage() {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isClient, setIsClient] = useState(false);  // ✅ Vérifie si on est côté client
 
-function Homepage() {
-  // ✅ Récupération dynamique des paramètres uniquement côté client
-  const params = useParams() || {};
-  const searchParams = useSearchParams();
+    useEffect(() => {
+        setIsClient(true);  // ✅ Une fois monté, on autorise l'affichage
+    }, []);
 
-  // ✅ Transformation propre de searchParams en objet
-  const searchParamsObj = React.useMemo(() => {
-    return searchParams ? Object.fromEntries(searchParams.entries()) : {};
-  }, [searchParams]);
+    useEffect(() => {
+        async function fetchData() {
+            const { data, error } = await supabase.from("test_table").select("*");
+            if (error) {
+                console.error("⚠️ Erreur Supabase :", error);
+                setError(error.message);
+            } else {
+                console.log("📢 Données reçues :", data);
+                setData(data);
+            }
+            setIsLoading(false);
+        }
+        fetchData();
+    }, []);
 
-  return (
-    <PageParamsProvider__ params={params} query={searchParamsObj}>
-      <PlasmicHomepage />
-    </PageParamsProvider__>
-  );
+    // ✅ Empêche Next.js de pré-afficher du HTML incorrect
+    if (!isClient) return null;  
+
+    return (
+        <div>
+            <h1>✅ Test de connexion Supabase</h1>
+            {isLoading ? (
+                <p>⏳ Chargement des données...</p>
+            ) : error ? (
+                <p style={{ color: 'red' }}>⚠️ Erreur : {error}</p>
+            ) : (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            )}
+        </div>
+    );
 }
-
-export default Homepage;
