@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    reactStrictMode: false, // 🔥 Désactivé pour éviter les double-rendus en dev
+  };
+  
+  export default nextConfig;
+  

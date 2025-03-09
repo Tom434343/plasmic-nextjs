@@ -9,9 +9,10 @@
 // Plasmic Project: wJCtnTJsMmEC5x5cLNk59j
 // Component: 5li343VTku5c
 
-"use client"; // ⚠️ Ajouté ici pour activer le rendu client ⚠️
+"use client"; // ⚠️ Activation du rendu client ⚠️
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import {
@@ -31,9 +32,14 @@ import sty from "./PlasmicHomepage.module.css"; // plasmic-import: 5li343VTku5c/
 
 createPlasmicElementProxy;
 
-function PlasmicHomepage(props) {
-  const { overrides } = props;
+// 🔥 Empêche les erreurs d'hydration
+const PlasmicHomepageContent = dynamic(() => Promise.resolve(PlasmicHomepageInternal), {
+  ssr: false,
+});
 
+function PlasmicHomepageInternal(props) {
+  const { overrides } = props;
+  
   return (
     <React.Fragment>
       <Head></Head>
@@ -100,7 +106,9 @@ function PlasmicHomepage(props) {
   );
 }
 
-// ✅ Assure-toi bien d'exporter le composant par défaut
-export default PlasmicHomepage;
+// ✅ Solution Hydration: On encapsule dans `dynamic` pour éviter les erreurs SSR
+export default function PlasmicHomepage(props) {
+  return <PlasmicHomepageContent {...props} />;
+}
 
 /* prettier-ignore-end */

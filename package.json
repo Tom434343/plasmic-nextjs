@@ -14,8 +14,11 @@
     "@plasmicpkgs/react-aria": "^0.0.119",
     "@supabase/supabase-js": "^2.49.1",
     "next": "15.2.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next-auth": "^4.24.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stripe": "^17.7.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
